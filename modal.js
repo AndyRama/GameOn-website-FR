@@ -16,9 +16,11 @@ const closeModal = document.querySelectorAll(".close");
 const formModal = document.getElementById("form-modal")
 const firstName = document.getElementById("first");
 const lastName = document.getElementById("last");
+const email = document.getElementById('email');
 
 const errorFirst = document.querySelector(".errorFirst");
 const errorLast = document.querySelector(".errorLast");
+const errorEmail = document.querySelector('.errorEmail');
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -51,11 +53,20 @@ function checkLastName(value) {
   }
 }
 
+//Check validation for email with Regex
+function checkEmail(value) {
+  return String(value)
+  .toLowerCase()
+  .match(
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+};
 
 // Reset error 
 function resetError() {
   errorFirst.innerHTML = "";
   errorLast.innerHTML = "";
+  errorEmail.innerHTML = "";
 }
 
 //listen activity for form
@@ -80,6 +91,16 @@ formModal.addEventListener("submit", event => {
     errorLast.innerHTML = "Votre nom est valide.";
     errorLast.style.color = "green";
     errorLast.style.fontSize = "0.8rem"; 
+  }
+
+  if(!checkEmail(email.value)) {
+    errorEmail.innerHTML = "Veuillez saisir une adresse mail valide.";
+    errorEmail.style.color = "red";
+    errorEmail.style.fontSize = "0.8rem";    
+  } else {
+    errorEmail.innerHTML = "Votre email est accepté.";
+    errorEmail.style.color = "green";
+    errorEmail.style.fontSize = "0.8rem"; 
   }
 });
 
