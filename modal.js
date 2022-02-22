@@ -16,11 +16,13 @@ const closeModal = document.querySelectorAll(".close");
 const formModal = document.getElementById("form-modal")
 const firstName = document.getElementById("first");
 const lastName = document.getElementById("last");
-const email = document.getElementById('email');
+const email = document.getElementById("email");
+const quantity = document.getElementById("quantity");
 
 const errorFirst = document.querySelector(".errorFirst");
 const errorLast = document.querySelector(".errorLast");
-const errorEmail = document.querySelector('.errorEmail');
+const errorEmail = document.querySelector(".errorEmail");
+const errorQuantity = document.querySelector(".errorQuantity");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -62,11 +64,25 @@ function checkEmail(value) {
     );
 };
 
+//Check validation number tournament
+function checkQuantity(value) {
+  if(isNaN(value)|| value.length == 0){
+    // console.log("test");
+    return false;
+  
+  } else {
+    errorQuantity.innerHTML = "";
+    // console.log("test2");
+    return true;
+  }
+}
+
 // Reset error 
 function resetError() {
   errorFirst.innerHTML = "";
   errorLast.innerHTML = "";
   errorEmail.innerHTML = "";
+  errorQuantity.innerHTML = "";
 }
 
 //listen activity for form
@@ -101,6 +117,16 @@ formModal.addEventListener("submit", event => {
     errorEmail.innerHTML = "Votre email est accepté.";
     errorEmail.style.color = "green";
     errorEmail.style.fontSize = "0.8rem"; 
+  }
+
+  if(!checkQuantity(quantity.value)) {
+    errorQuantity.innerHTML = "Veuillez saisir votre nombre de participation.";
+    errorQuantity.style.color = "red";
+    errorQuantity.style.fontSize = "0.8rem";    
+  } else {
+    errorQuantity.innerHTML = "Votre réponse est accepté.";
+    errorQuantity.style.color = "green";
+    errorQuantity.style.fontSize = "0.8rem"; 
   }
 });
 
