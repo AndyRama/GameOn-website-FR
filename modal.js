@@ -15,8 +15,10 @@ const closeModal = document.querySelectorAll(".close");
 
 const formModal = document.getElementById("form-modal")
 const firstName = document.getElementById("first");
+const lastName = document.getElementById("last");
 
-const errorFirst = document.querySelector(".errorFirst")
+const errorFirst = document.querySelector(".errorFirst");
+const errorLast = document.querySelector(".errorLast");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -31,8 +33,17 @@ document.getElementById("closemodal").addEventListener("click", function(e) {
   modalbg.style.display ="none";
 })
 
-//Check validation for name[nb letters] < 2
+//Check validation for firstname[nb letters] < 2
 function checkFirstName(value) {
+  if(value && value.length > 2) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+//Check validation for lastname[nb letters] < 2
+function checkLastName(value) {
   if(value && value.length > 2) {
     return true;
   } else {
@@ -44,6 +55,7 @@ function checkFirstName(value) {
 // Reset error 
 function resetError() {
   errorFirst.innerHTML = "";
+  errorLast.innerHTML = "";
 }
 
 //listen activity for form
@@ -58,6 +70,16 @@ formModal.addEventListener("submit", event => {
     errorFirst.innerHTML =" Votre prénom est valide";
     errorFirst.style.color = "green";
     errorFirst.style.fontSize= "0.8rem";
+  }
+
+  if(!checkLastName(lastName.value)) {
+    errorLast.innerHTML = "Veuillez entrer 2 caractères ou plus pour votre nom.";
+    errorLast.style.color = "red";
+    errorLast.style.fontSize = "0.8rem";    
+  } else {
+    errorLast.innerHTML = "Votre nom est valide.";
+    errorLast.style.color = "green";
+    errorLast.style.fontSize = "0.8rem"; 
   }
 });
 
