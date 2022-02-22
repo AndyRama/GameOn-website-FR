@@ -19,10 +19,13 @@ const lastName = document.getElementById("last");
 const email = document.getElementById("email");
 const quantity = document.getElementById("quantity");
 
+const city = document.querySelectorAll(".location");
+
 const errorFirst = document.querySelector(".errorFirst");
 const errorLast = document.querySelector(".errorLast");
 const errorEmail = document.querySelector(".errorEmail");
 const errorQuantity = document.querySelector(".errorQuantity");
+const errorCity = document.querySelector(".errorCity");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -77,12 +80,25 @@ function checkQuantity(value) {
   }
 }
 
+//Check validation for city 
+function checkCity(elements) {
+  let checked = false;
+  for (let i = 0; i < elements.length; i++) {
+    if(elements[i].checked) {
+      checked = true;
+    }
+  }
+  return checked;
+}
+
+
 // Reset error 
 function resetError() {
   errorFirst.innerHTML = "";
   errorLast.innerHTML = "";
   errorEmail.innerHTML = "";
   errorQuantity.innerHTML = "";
+  errorCity.innerHTML = "";
 }
 
 //listen activity for form
@@ -127,6 +143,16 @@ formModal.addEventListener("submit", event => {
     errorQuantity.innerHTML = "Votre réponse est accepté.";
     errorQuantity.style.color = "green";
     errorQuantity.style.fontSize = "0.8rem"; 
+  }
+
+  if(!checkCity(city)) {
+    errorCity.innerHTML = "Veuillez selectionner une ville.";
+    errorCity.style.color = "red";
+    errorCity.style.fontSize = "0.8rem";    
+  } else {
+    errorCity.innerHTML = "Localisation est valide.";
+    errorCity.style.color = "green";
+    errorCity.style.fontSize = "0.8rem"; 
   }
 });
 
