@@ -17,6 +17,7 @@ const formModal = document.getElementById("form-modal")
 const firstName = document.getElementById("first");
 const lastName = document.getElementById("last");
 const email = document.getElementById("email");
+const errorDate = document.querySelector('.errorDate');
 const quantity = document.getElementById("quantity");
 const checkbox1 = document.getElementById("checkbox1");
 
@@ -25,6 +26,7 @@ const city = document.querySelectorAll(".location");
 const errorFirst = document.querySelector(".errorFirst");
 const errorLast = document.querySelector(".errorLast");
 const errorEmail = document.querySelector(".errorEmail");
+const birthdate = document.getElementById('birthdate');
 const errorQuantity = document.querySelector(".errorQuantity");
 const errorCity = document.querySelector(".errorCity");
 const errorCgu = document.querySelector(".errorCgu");
@@ -69,15 +71,21 @@ function checkEmail(value) {
     );
 };
 
+//Check validation Birthdate
+function checkBirthDate(value) {
+  if(value && value.length > 2) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 //Check validation number tournament
 function checkQuantity(value) {
   if(isNaN(value)|| value.length == 0){
-    // console.log("test");
     return false;
-  
   } else {
     errorQuantity.innerHTML = "";
-    // console.log("test2");
     return true;
   }
 }
@@ -103,12 +111,12 @@ function okCheckbox(element) {
   }
 }
 
-
 // Reset error 
 function resetError() {
   errorFirst.innerHTML = "";
   errorLast.innerHTML = "";
   errorEmail.innerHTML = "";
+  errorDate.innerHTML = "";
   errorQuantity.innerHTML = "";
   errorCity.innerHTML = "";
   errorCgu.innerHTML = "";
@@ -146,6 +154,16 @@ formModal.addEventListener("submit", event => {
     errorEmail.innerHTML = "Votre email est accepté.";
     errorEmail.style.color = "green";
     errorEmail.style.fontSize = "0.8rem"; 
+  }
+
+  if(!checkBirthDate(birthdate.value)) {
+    errorDate.innerHTML = "Veuillez entrer votre date de naissance.";
+    errorDate.style.color = "red";
+    errorDate.style.fontSize = "0.8rem";    
+  } else {
+    errorDate.innerHTML = "Votre date de naissance est valide.";
+    errorDate.style.color = "green";
+    errorDate.style.fontSize = "0.8rem"; 
   }
 
   if(!checkQuantity(quantity.value)) {
