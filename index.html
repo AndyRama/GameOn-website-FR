@@ -1,34 +1,40 @@
 <!DOCTYPE html>
-<html lang="fr"> <!-- Fr -->
+<html lang="fr">
+  <!-- langue -->
   <head>
     <meta charset="utf-8" />
     <title>GameOn</title>
-    <link rel="icon" type="images/png" href="favicon.png">
+    <!-- change title -->
+    <link rel="icon" type="images/png" href="./images/favicon.png">
+    <!-- Add favicon -->
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" href="modal.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans" rel="stylesheet"/>
   </head>
   <body>
-    <div class="topnav" id="myTopnav">
-      <div class="header-logo">
-      <img alt="logo" src="Logo.png"/>
-      <!-- remove wight and height in HTML -->
-    </div>
-    <div class="main-navbar">
-      <!-- remove btn Accueil --> 
-      <a href="#" class="active"><span>Détails de l'évènement</span></a>
-      <!-- add class => active -->
-      <a href="#"><span>À propos</span></a>
-      <a href="#"><span>Contact</span></a>
-      <a href="#"><span>Évènements passés</span></a>
-    </div>
-    <a href="javascript:void(0);" class="icon" onclick="editNav()">
-      <i class="fa fa-bars"></i>
-    </a>
-    <!-- move out of div -->
-  </div>
+    <!--Navbar-->
+    <header>
+      <div class="topnav" id="myTopnav">
+        <div class="header-logo">
+          <img alt="logo" src="./images/Logo.png"/>
+          <!-- remove wight and height in HTML -->
+        </div>
+        <div class="main-navbar">            
+          <!-- remove btn Accueil --> 
+          <a href="#" class="active"><span>Détails de l'évènement</span></a>
+          <a href="#"><span>À Propos</span></a>
+          <a href="#"><span>Contact</span></a>
+          <a href="#"><span>Évènements passés</span></a>
+        </div>
+        <a href="javascript:void(0);" class="icon" onclick="editNav()">
+          <i class="fa fa-bars"></i>
+        </a>
+        <!-- remove </div> -->
+      </div>
+    </header>
     <main>
+      <!--Main banner-->
       <div class="hero-section">
         <div class="hero-content">
           <h1 class="hero-headline">
@@ -44,49 +50,64 @@
           </button>
         </div>
         <div class="hero-img">
-          <img src="./bg_img.jpg" alt="img" />
+          <img src="./images/bg_img.jpg" alt="img" />
         </div>
-        <button class="btn-signup modal-btn">
+        <button class="btn-signup modal-btn" id="signup">
           je m'inscris
         </button>
       </div>
 
+      <!--Modal-->
       <div class="bground">
         <div class="content">
           <span class="close" id="closemodal"></span>
           <div class="modal-body">
-            <form name="reserve" action="index.html" method="get" id="form-modal">
+            
+            <!-- form field -->
+            <form  id="form-modal" name="reserve" action="index.html" method="get">
               <!-- remove onsubmit="return validate(event)" and add id form-modal -->
+
+              <!-- input firstname -->
               <div class="formData">
                 <label>Prénom</label><br>
                 <input class="text-control" type="text" id="first" name="first" minlength="2"/><br>
-                <span class="error errorFirst"></span>
-                <!-- add class => "error errorFirst" -->
               </div>
+              <!-- add error for firstname -->
+              <span class="errorFirst"></span>
+
+              <!-- input Lastname -->
               <div class="formData">
                 <label>Nom</label><br>
                 <input class="text-control" type="text" id="last" name="last"/><br>
-                <span class="error errorLast"></span>
-                <!-- add class => "error errorLast" -->
               </div>
+              <!-- add error for  lastname -->
+              <span class="errorLast"></span>
+
+              <!-- input Email -->
               <div class="formData">
                 <label>E-mail</label><br>
                 <input class="text-control" type="email" id="email" name="email"/><br>
-                <span class="error errorEmail"></span>
-                <!-- add class => "error errorEmail" -->
-              </div>
+               </div>
+               <!-- add error for  email -->
+               <span class="errorEmail"></span>
+
+               <!-- input Birthdate -->
               <div class="formData">
                 <label>Date de naissance</label><br>
                 <input class="text-control" type="date" id="birthdate" name="birthdate"/><br>
-                <span class="error errorDate"></span>
-              <!-- add class  => "error errorDate" -->
-              </div>
+               </div>
+               <!-- add error for Birthdate -->
+               <span class="errorDate"></span>
+              
+              <!-- input Quantity -->
               <div class="formData">
-                <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
+                <label id="label">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99"><br>
-                <span class="error errorQuantity"></span>
-                <!-- add class => "error errorNumber" -->
               </div>
+              <!-- add errorQuantity -->
+              <span class="errorQuantity"></span>
+
+              <!-- input City -->
               <div class="formData">
                 <p class="text-label">Dans quelle ville souhaitez-vous concourir ?</p>
                 <input class="checkbox-input location" type="radio" id="location1" name="location" value="New York"/>
@@ -120,35 +141,46 @@
                   Portland
                 </label>
               </div>
-              <span class="error errorCity"></span>
-              <!-- add class  => "error errorCity" -->
-
+              <!-- add errorCity -->
+              <span class="errorCity"></span>
+              
+              <!-- input Cgu -->
               <div class="formData">
-                <input class="checkbox-input" type="checkbox" name="checkbox1" id="checkbox1" />
-                <!-- remove checked -->
-                <label class="checkbox2-label" id="checkbox1" for="checkbox1">
+                <input class="checkbox-input" type="checkbox" name="checkbox1" id="checkbox1"/>
+                <!--  remove checked -->
+                <label class="checkbox2-label" for="checkbox1">
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
-                </label><br>
-                <input class="checkbox-input" type="checkbox" id="checkbox2"/>
+                </label>
+                <br>
+                <input class="checkbox-input" type="checkbox" name ="checkbox2" id="checkbox2"/>
                 <label class="checkbox2-label" for="checkbox2">
                   <span class="checkbox-icon"></span>
                   Je souhaite être prévenu des prochains évènements.
                   <!-- remove text "je" -->
                 </label>
                 <br>
-                <span class="error errorCgu"></span>
-                <!-- add class  => "error errorCgu" -->
+                <!-- add errorCgu -->
+                <span class="errorCgu"></span>
               </div>
-              <br>
-              <input class="btn-submit button" type="submit" value="C'est parti !"/>
-              <!-- change class -->
+              <input class="btn-submit button" type="submit" value="C'est parti"/>
+              <!-- presence two class "btn-submit"/"button" -->
             </form>
           </div>
         </div>
       </div>
+
+      <!--Succes Message Box-->
+      <div class="submit-confirmation-bg" id="confirmation-message">
+        <div class="confirmation-body">
+          <button class="close-confirmation close-Succes" id="X-close">&#10006;</button>
+          <p>Merci pour <br> votre inscription</p>
+          <button class="close-btn close-Succes" id="close_button_succes" value="Fermer">Fermer</button>
+        </div>
+      </div>
     </main>
-    <!-- Fix indentation for main of HTML -->
+    
+    <!--Footer-->
     <footer>
       <p class="copyrights">
         Copyright 2014 - 2022, GameOn Inc.
